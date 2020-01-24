@@ -1,7 +1,11 @@
+// it's recommended to load configuration for .env as early as possible
+require('dotenv').config(); // add this line as the first thing to run1
 const express = require('express');
 const path = require('path');
 
 const server = express();
+
+const port = process.env.PORT || 5000;
 
 server.get('/download', (req, res, next) => {
     const filePath = path.join(__dirname, 'index.html');
@@ -26,6 +30,6 @@ res.status(500).json(
     error: err});
 });
 
-server.listen(5000, () => {
-    console.log('magic happening in 5000');
+server.listen(port, () => {
+    console.log(`magic happening in ${port}`);
 });
